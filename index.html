@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -102,11 +102,21 @@
   Department of Psychology, Swansea University<br />
   Email: s.o.dymond@swansea.ac.uk</p>
 
-<button id="startBtn">Continue</button>
+  <!-- Consent Statement -->
+  <h3>Consent to Participate</h3>
+  <p>By clicking the <strong>Continue</strong> button below, you confirm that:</p>
+  <ul>
+    <li>You have read and understood the information provided above.</li>
+    <li>You voluntarily agree to participate in this study.</li>
+    <li>You understand that you can withdraw at any time before submitting your data.</li>
+  </ul>
 
-<script>
-  document.getElementById('startBtn').addEventListener('click', () => {
-    window.location.href = 'https://swanseachhs.eu.qualtrics.com/jfe/form/SV_cvg635IeqgwXfDM';
-    // Replace the URL with your actual Google Form "live" URL, NOT the edit link
-  });
-</script>
+  <button id="startBtn">Continue</button>
+
+  <script>
+    document.getElementById('startBtn').addEventListener('click', () => {
+      window.location.href = 'https://swanseachhs.eu.qualtrics.com/jfe/form/SV_cvg635IeqgwXfDM';
+    });
+  </script>
+</body>
+</html>
