@@ -112,29 +112,29 @@
   </form>
 
   <script>
-    const form = document.getElementById('pgsiForm');
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
+  const form = document.getElementById('pgsiForm');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
 
-      const formData = new FormData(form);
-      const pgsiResults = {};
+    const formData = new FormData(form);
+    const pgsiResults = {};
 
-      for(let i = 1; i <= 9; i++) {
-        const answer = formData.get(`q${i}`);
-        if(answer === null) {
-          alert(`Please answer question ${i}`);
-          return;
-        }
-        pgsiResults[`q${i}`] = Number(answer);
+    for (let i = 1; i <= 9; i++) {
+      const answer = formData.get(`q${i}`);
+      if (answer === null) {
+        alert(`Please answer question ${i}`);
+        return;
       }
+      pgsiResults[`q${i}`] = Number(answer);
+    }
 
-      // Save PGSI data in sessionStorage as JSON string
-      sessionStorage.setItem('pgsiResults', JSON.stringify(pgsiResults));
+    // Save PGSI data in sessionStorage
+    sessionStorage.setItem('pgsiResults', JSON.stringify(pgsiResults));
 
-      // Redirect to next page (your survey or randomized variant)
-      // Example: redirect to survey.html
-      window.location.href = 'survey.html'; // Change to your actual next page
-    });
-  </script>
+    // Randomly assign to VersionA or VersionB
+    const nextPage = Math.random() < 0.5 ? 'VersionA.html' : 'VersionB.html';
+    window.location.href = nextPage;
+  });
+</script>
 </body>
 </html>
