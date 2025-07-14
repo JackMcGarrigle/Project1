@@ -1,0 +1,140 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PGSI Questionnaire</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 10px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .question {
+      margin-bottom: 25px;
+    }
+    .question p {
+      font-weight: bold;
+    }
+    label {
+      display: block;
+      margin: 5px 0;
+      cursor: pointer;
+    }
+    button {
+      display: block;
+      margin: 30px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Problem Gambling Severity Index (PGSI)</h1>
+  <form id="pgsiForm">
+    <div class="question">
+      <p>1. Have you bet more than you could really afford to lose?</p>
+      <label><input type="radio" name="q1" value="0" required /> Never</label>
+      <label><input type="radio" name="q1" value="1" /> Sometimes</label>
+      <label><input type="radio" name="q1" value="2" /> Most of the time</label>
+      <label><input type="radio" name="q1" value="3" /> Almost always</label>
+    </div>
+
+    <div class="question">
+      <p>2. Has gambling caused you any health problems, including stress or anxiety?</p>
+      <label><input type="radio" name="q2" value="0" required /> Never</label>
+      <label><input type="radio" name="q2" value="1" /> Sometimes</label>
+      <label><input type="radio" name="q2" value="2" /> Most of the time</label>
+      <label><input type="radio" name="q2" value="3" /> Almost always</label>
+    </div>
+
+    <div class="question">
+      <p>3. Have people criticized your betting or told you that you had a gambling problem, regardless of whether or not you thought it was true?</p>
+      <label><input type="radio" name="q3" value="0" required /> Never</label>
+      <label><input type="radio" name="q3" value="1" /> Sometimes</label>
+      <label><input type="radio" name="q3" value="2" /> Most of the time</label>
+      <label><input type="radio" name="q3" value="3" /> Almost always</label>
+    </div>
+
+    <div class="question">
+      <p>4. Have you felt guilty about the way you gamble or what happens when you gamble?</p>
+      <label><input type="radio" name="q4" value="0" required /> Never</label>
+      <label><input type="radio" name="q4" value="1" /> Sometimes</label>
+      <label><input type="radio" name="q4" value="2" /> Most of the time</label>
+      <label><input type="radio" name="q4" value="3" /> Almost always</label>
+    </div>
+
+    <div class="question">
+      <p>5. Have you needed to gamble with larger amounts of money to get the same feeling of excitement?</p>
+      <label><input type="radio" name="q5" value="0" required /> Never</label>
+      <label><input type="radio" name="q5" value="1" /> Sometimes</label>
+      <label><input type="radio" name="q5" value="2" /> Most of the time</label>
+      <label><input type="radio" name="q5" value="3" /> Almost always</label>
+    </div>
+
+    <div class="question">
+      <p>6. When you gambled, did you go back another day to try to win back the money you lost?</p>
+      <label><input type="radio" name="q6" value="0" required /> Never</label>
+      <label><input type="radio" name="q6" value="1" /> Sometimes</label>
+      <label><input type="radio" name="q6" value="2" /> Most of the time</label>
+      <label><input type="radio" name="q6" value="3" /> Almost always</label>
+    </div>
+
+    <div class="question">
+      <p>7. Have you lied to people important to you about how much you gamble?</p>
+      <label><input type="radio" name="q7" value="0" required /> Never</label>
+      <label><input type="radio" name="q7" value="1" /> Sometimes</label>
+      <label><input type="radio" name="q7" value="2" /> Most of the time</label>
+      <label><input type="radio" name="q7" value="3" /> Almost always</label>
+    </div>
+
+    <div class="question">
+      <p>8. Have you borrowed money or sold anything to get money to gamble?</p>
+      <label><input type="radio" name="q8" value="0" required /> Never</label>
+      <label><input type="radio" name="q8" value="1" /> Sometimes</label>
+      <label><input type="radio" name="q8" value="2" /> Most of the time</label>
+      <label><input type="radio" name="q8" value="3" /> Almost always</label>
+    </div>
+
+    <div class="question">
+      <p>9. Have you felt that you might have a problem with gambling?</p>
+      <label><input type="radio" name="q9" value="0" required /> Never</label>
+      <label><input type="radio" name="q9" value="1" /> Sometimes</label>
+      <label><input type="radio" name="q9" value="2" /> Most of the time</label>
+      <label><input type="radio" name="q9" value="3" /> Almost always</label>
+    </div>
+
+    <button type="submit">Next</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('pgsiForm');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const pgsiResults = {};
+
+      for(let i = 1; i <= 9; i++) {
+        const answer = formData.get(`q${i}`);
+        if(answer === null) {
+          alert(`Please answer question ${i}`);
+          return;
+        }
+        pgsiResults[`q${i}`] = Number(answer);
+      }
+
+      // Save PGSI data in sessionStorage as JSON string
+      sessionStorage.setItem('pgsiResults', JSON.stringify(pgsiResults));
+
+      // Redirect to next page (your survey or randomized variant)
+      // Example: redirect to survey.html
+      window.location.href = 'survey.html'; // Change to your actual next page
+    });
+  </script>
+</body>
+</html>
