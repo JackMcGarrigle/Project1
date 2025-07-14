@@ -119,20 +119,20 @@
     const formData = new FormData(form);
     const pgsiResults = {};
 
-    for (let i = 1; i <= 9; i++) {
+    for(let i = 1; i <= 9; i++) {
       const answer = formData.get(`q${i}`);
-      if (answer === null) {
+      if(answer === null) {
         alert(`Please answer question ${i}`);
         return;
       }
       pgsiResults[`q${i}`] = Number(answer);
     }
 
-    // Save PGSI data in sessionStorage
+    // Save PGSI data in sessionStorage as JSON string
     sessionStorage.setItem('pgsiResults', JSON.stringify(pgsiResults));
 
-    // Randomly assign to VersionA or VersionB
-    const nextPage = Math.random() < 0.5 ? 'VariantA.html' : 'VariantB.html';
+    // Randomly redirect to VersionA or VersionB
+    const nextPage = Math.random() < 0.5 ? 'VersionA.html' : 'VersionB.html';
     window.location.href = nextPage;
   });
 </script>
