@@ -1,0 +1,51 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Next: Online Gambling Platform</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f9f9f9;
+      color: #333;
+      line-height: 1.5;
+      text-align: center;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Thank you for completing the PGSI survey!</h1>
+
+  <p>You will now be presented with an online gambling platform simulation.</p>
+
+  <p>When you’re ready, click the button below to start the experiment.</p>
+
+  <button id="startExperimentBtn">Start Experiment</button>
+
+  <script>
+    document.getElementById('startExperimentBtn').addEventListener('click', () => {
+      // Randomly choose variantA or variantB page
+      const variant = Math.random() < 0.5 ? 'VariantA.html' : 'VariantB.html';
+      window.location.href = variant;
+    });
+  </script>
+
+</body>
+</html>
