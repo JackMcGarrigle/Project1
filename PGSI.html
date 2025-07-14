@@ -111,7 +111,7 @@
     <button type="submit">Next</button>
   </form>
 
-  <script>
+<script>
   const form = document.getElementById('pgsiForm');
   form.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -131,9 +131,10 @@
     // Save PGSI data in sessionStorage as JSON string
     sessionStorage.setItem('pgsiResults', JSON.stringify(pgsiResults));
 
-    // Randomly redirect to VersionA or VersionB
-    const nextPage = Math.random() < 0.5 ? 'VariantA.html' : 'VariantB.html';
-    window.location.href = nextPage;
+    // ✅ Redirect to a randomly selected version
+    const versions = ['VersionA.html', 'VersionB.html'];
+    const randomPage = versions[Math.floor(Math.random() * versions.length)];
+    window.location.href = randomPage;
   });
 </script>
 </body>
