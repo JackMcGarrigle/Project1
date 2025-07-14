@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Starting Experiment</title>
+  <script>
+    window.onload = function() {
+      const variants = ['variantA.html', 'variantB.html'];
+      const randomIndex = Math.floor(Math.random() * variants.length);
+      // Redirect to the randomly chosen variant page
+      window.location.href = variants[randomIndex];
+    };
+  </script>
+</head>
+<body>
+  <p>Loading your experiment... Please wait.</p>
+</body>
+</html>
