@@ -1,4 +1,4 @@
-   <!DOCTYPE html>
+     <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -632,11 +632,11 @@
   <div id="consent-text">
     We use cookies to enhance your experience and to show relevant ads. By continuing, you agree to our use of cookies.
   </div>
- <div id="consent-buttons">
-  <button id="accept-all">Accept All</button>
-  <button id="reject-all">Reject All</button>
-  <button id="manage-preferences">Manage Preferences</button>
-</div>
+  <div id="consent-buttons">
+    <button id="accept-all" type="button" aria-label="Accept all cookies">Accept All</button>
+     <button id="reject-all" type="button" aria-label="Reject all cookies">Reject All</button>
+    <button id="manage-preferences" type="button" aria-label="Open cookie settings">Manage Preferences</button>
+  </div>
 </div>
 </div>
 
@@ -657,34 +657,31 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const consentBanner = document.getElementById("consent-banner");
-    const acceptBtn = document.getElementById("accept-all");
-    const rejectBtn = document.getElementById("reject-all");
-    const manageBtn = document.getElementById("manage-preferences");
-    const settingsPanel = document.getElementById("settings-panel");
+  const consentBanner = document.getElementById('consent-banner');
+  const settingsPanel = document.getElementById('settings-panel');
+  const acceptAllBtn = document.getElementById('accept-all');
+  const settingsBtn = document.getElementById('settings');
+  const rejectAllBtn = document.getElementById('reject-all');
+  const savePrefsBtn = document.getElementById('save-preferences');
 
-    acceptBtn.addEventListener("click", function () {
-      // Store consent choice
-      localStorage.setItem("cookieConsent", "accepted");
-      // Hide banner
-      consentBanner.style.display = "none";
-      // Optionally, continue to next part
-      console.log("User accepted cookies");
-    });
-
-    rejectBtn.addEventListener("click", function () {
-      localStorage.setItem("cookieConsent", "rejected");
-      consentBanner.style.display = "none";
-      console.log("User rejected cookies");
-    });
-
-    manageBtn.addEventListener("click", function () {
-      settingsPanel.style.display = "block";
-      console.log("Manage preferences opened");
-    });
+  // Accept All
+  acceptAllBtn.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'accepted');
+    window.location.href = 'https://swanseachhs.eu.qualtrics.com/jfe/form/SV_6fotGjt0lqvFheS';
   });
-</script>
+
+  // Settings - show settings panel
+  settingsBtn.addEventListener('click', () => {
+    consentBanner.style.display = 'none';
+    settingsPanel.style.display = 'block';
+  });
+
+  // Reject All
+  rejectAllBtn.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'rejected');
+    settingsPanel.style.display = 'none';
+    window.location.href = 'https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS';
+  });
 
   // Save Preferences
   savePrefsBtn.addEventListener('click', () => {
