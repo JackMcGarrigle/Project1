@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -399,9 +399,10 @@
   gap: 12px;
 }
 
-/* Reject All button — make it stand out */
-#settings-panel #reject-all {
-  background-color: #d63031;
+/* Green Accept All and Reject All buttons */
+#accept-all, 
+#reject-all {
+  background-color: #28a745;  /* same green */
   color: white;
   padding: 14px 24px;
   font-size: 18px;
@@ -410,40 +411,32 @@
   border-radius: 4px;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.2s ease;
+  transition: background-color 0.3s ease;
 }
 
-#settings-panel #reject-all:hover {
-  background-color: #c0392b;
+#accept-all:hover,
+#reject-all:hover {
+  background-color: #218838; /* darker green on hover */
 }
 
-/* Save Preferences button — secondary styling */
-#settings-panel #save-preferences {
-  background-color: #555;
+/* Gray Manage Preferences button */
+#manage-preferences {
+  background-color: #6c757d; /* gray */
   color: white;
-  padding: 12px 20px;
-  font-size: 16px;
-  font-weight: normal;
+  padding: 14px 24px;
+  font-size: 18px;
+  font-weight: bold;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
 }
 
-#settings-panel #save-preferences:hover {
-  background-color: #444;
+#manage-preferences:hover {
+  background-color: #5a6268; /* darker gray on hover */
 }
 
-
-/* Green Accept All button */
-#accept-all {
-  background-color: #28a745;
-}
-
-/* Grey Settings button */
-#settings {
-  background-color: #6c757d; /* Bootstrap-style grey */
-}
 
   /* Footer */
   footer {
@@ -476,6 +469,7 @@
       gap: 10px;
     }
   }
+  
 </style>
 </head>
 <body>
@@ -634,17 +628,18 @@
   </main>
 </div>
 
-<!-- Consent Banner -->
-<div id="consent-banner" role="dialog" aria-live="polite">
+<div id="consent-banner" role="region" aria-label="Cookie consent banner" aria-live="polite">
   <div id="consent-text">
-    We use cookies to personalise content and ads, to provide social media features and to analyse our traffic. We also share information about your use of our site with our social media, advertising and analytics partners.
+    We use cookies to enhance your experience and to show relevant ads. By continuing, you agree to our use of cookies.
   </div>
-  <div id="consent-buttons" role="group" aria-label="Cookie consent options">
-    <button id="accept-all" aria-label="Accept all cookies">Accept All</button>
-    <button id="settings" aria-label="Manage your cookie preferences">Manage Preferences</button>
-    <button id="reject-all" aria-label="Reject non-essential cookies">Reject All</button>
+  <div id="consent-buttons">
+    <button id="accept-all" type="button" aria-label="Accept all cookies">Accept All</button>
+     <button id="reject-all" type="button" aria-label="Reject all cookies">Reject All</button>
+    <button id="manage-preferences" type="button" aria-label="Open cookie settings">Manage Preferences</button>
   </div>
 </div>
+</div>
+
 
 <!-- Settings panel (initially hidden) -->
 <div id="settings-panel" style="display: none;" role="region" aria-label="Cookie settings panel">
@@ -703,6 +698,11 @@
   });
 </script>
 
+<script>
+  window.onload = function() {
+    document.getElementById('cookie-banner').style.display = 'block';
+  };
+</script>
 
 
 </body>
