@@ -47,12 +47,12 @@
   <button id="startExperimentBtn">Start Experiment</button>
 
   <script>
-    document.getElementById('startExperimentBtn').addEventListener('click', () => {
-      // Randomly choose variantA or variantB page
-      const variant = Math.random() < 0.5 ? 'VariantA.html' : 'VariantB.html';
-      window.location.href = variant;
-    });
-  </script>
+  document.getElementById('startExperimentBtn').addEventListener('click', () => {
+    const variants = ['VariantA.html', 'VariantB.html', 'VariantC.html'];
+    const randomIndex = Math.floor(Math.random() * variants.length);
+    window.location.href = variants[randomIndex];
+  });
+</script>
 
 </body>
 </html>
