@@ -128,7 +128,7 @@
 
   #hero-banner {
   background-color: #004080; /* fallback color */
-  background-image: url('Image3.jpg'); /* replace with your image path */
+  background-image: url('images/Image3.jpg'); /* replace with your image path */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -657,6 +657,7 @@
   <div id="settings-buttons">
     <button id="reject-all" type="button" aria-label="Reject all cookies">Reject All</button>
     <button id="save-preferences" type="button" aria-label="Save preferences">Save Preferences</button>
+    <button id="backButton">Back</button>
   </div>
 </div>
 
@@ -667,6 +668,15 @@
   const settingsBtn = document.getElementById('settings');
   const rejectAllBtn = document.getElementById('reject-all');
   const savePrefsBtn = document.getElementById('save-preferences');
+const backButton = document.getElementById('backButton');
+
+backButton.addEventListener('click', () => {
+  // Hide settings panel
+  settingsPanel.style.display = 'none';
+  // Show main consent banner
+  consentBanner.style.display = 'flex';
+});
+
 
   // Accept All
   acceptAllBtn.addEventListener('click', () => {
