@@ -662,26 +662,25 @@
 </div>
 
 <script>
+  const bannerType = 'settings'; // 👈 Tell the system which banner this is
+
   const consentBanner = document.getElementById('consent-banner');
   const settingsPanel = document.getElementById('settings-panel');
   const acceptAllBtn = document.getElementById('accept-all');
   const settingsBtn = document.getElementById('settings');
   const rejectAllBtn = document.getElementById('reject-all');
   const savePrefsBtn = document.getElementById('save-preferences');
-const backButton = document.getElementById('backButton');
+  const backButton = document.getElementById('backButton');
 
-backButton.addEventListener('click', () => {
-  // Hide settings panel
-  settingsPanel.style.display = 'none';
-  // Show main consent banner
-  consentBanner.style.display = 'flex';
-});
-
+  backButton.addEventListener('click', () => {
+    settingsPanel.style.display = 'none';
+    consentBanner.style.display = 'flex';
+  });
 
   // Accept All
   acceptAllBtn.addEventListener('click', () => {
     localStorage.setItem('cookieConsent', 'accepted');
-    window.location.href = 'thanksaccept.html';
+    window.location.href = `thanksaccept.html?bannerType=${bannerType}`;
   });
 
   // Settings - show settings panel
@@ -694,7 +693,7 @@ backButton.addEventListener('click', () => {
   rejectAllBtn.addEventListener('click', () => {
     localStorage.setItem('cookieConsent', 'rejected');
     settingsPanel.style.display = 'none';
-    window.location.href = 'thanksreject.html';
+    window.location.href = `thanksreject.html?bannerType=${bannerType}`;
   });
 
   // Save Preferences
@@ -708,7 +707,7 @@ backButton.addEventListener('click', () => {
     }));
 
     settingsPanel.style.display = 'none';
-    window.location.href = 'thanksreject.html';
+    window.location.href = `thanksreject.html?bannerType=${bannerType}`;
   });
 </script>
 
