@@ -364,16 +364,15 @@
 
 #consent-buttons button {
   margin-left: 10px;
-  padding: 10px 16px; /* Slightly larger buttons */
+  padding: 10px 16px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-weight: 600;
-  background-color: #28a745;
   color: white;
   transition: background-color 0.3s ease;
-  font-size: 1rem; /* Ensure button text is readable */
-}  
+  font-size: 1rem;
+}
 #settings-panel {
   display: none; /* hidden by default, shown when clicking settings */
   position: fixed;
@@ -658,61 +657,65 @@
 
 
 <script>
-  const bannerType = 'category'; // 👈 Identifies this banner variant
+ const consentBanner = document.getElementById('consent-banner');
+const settingsPanel = document.getElementById('settings-panel');
+const acceptAllBtn = document.getElementById('accept-all');
+const managePrefsBtn = document.getElementById('manage-preferences');
+const rejectAllBtn = document.getElementById('reject-all');
+const rejectAllSettingsBtn = document.getElementById('reject-all-settings');
+const savePrefsBtn = document.getElementById('save-preferences');
+const backButton = document.getElementById('backButton');
 
-  const consentBanner = document.getElementById('consent-banner');
-  const settingsPanel = document.getElementById('settings-panel');
-  const acceptAllBtn = document.getElementById('accept-all');
-  const managePrefsBtn = document.getElementById('manage-preferences');
-  const rejectAllBtn = document.getElementById('reject-all');
-  const rejectAllSettingsBtn = document.getElementById('reject-all-settings');
-  const savePrefsBtn = document.getElementById('save-preferences');
-  const backButton = document.getElementById('backButton');
+backButton.addEventListener('click', () => {
+  // Hide settings panel
+  settingsPanel.style.display = 'none';
+  // Show main consent banner
+  consentBanner.style.display = 'flex';
+});
 
-  backButton.addEventListener('click', () => {
-    settingsPanel.style.display = 'none';
-    consentBanner.style.display = 'flex';
-  });
 
-  // Accept All
-  acceptAllBtn.addEventListener('click', () => {
-    localStorage.setItem('cookieConsent', 'accepted');
-    window.location.href = `thanksaccept.html?bannerType=${bannerType}`;
-  });
+// Accept All
+acceptAllBtn.addEventListener('click', () => {
+  localStorage.setItem('cookieConsent', 'accepted');
+  window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSckYBxLPrDDcIgm2jNRSZIxTWFYnO-TtSQxvABdCyfP-z5JyA/viewform';
+});
 
-  // Manage Preferences (show settings panel)
-  managePrefsBtn.addEventListener('click', () => {
-    consentBanner.style.display = 'none';
-    settingsPanel.style.display = 'block';
-  });
+// Manage Preferences (show settings panel)
+managePrefsBtn.addEventListener('click', () => {
+  consentBanner.style.display = 'none';
+  settingsPanel.style.display = 'block';
+});
 
-  // Reject All in banner
-  rejectAllBtn.addEventListener('click', () => {
-    localStorage.setItem('cookieConsent', 'rejected');
-    window.location.href = `thanksreject.html?bannerType=${bannerType}`;
-  });
+// Reject All in banner
+rejectAllBtn.addEventListener('click', () => {
+  localStorage.setItem('cookieConsent', 'rejected');
+  window.location.href = 'https://docs.google.com/forms/d/1Plw9la7fM6SgNVJjZ_hVgPkNBWrVgi8wTT0hC6uRbXQ/edit';
+});
 
-  // Reject All in settings panel
-  rejectAllSettingsBtn.addEventListener('click', () => {
-    localStorage.setItem('cookieConsent', 'rejected');
-    settingsPanel.style.display = 'none';
-    window.location.href = `thanksreject.html?bannerType=${bannerType}`;
-  });
+// Reject All in settings panel
+rejectAllSettingsBtn.addEventListener('click', () => {
+  localStorage.setItem('cookieConsent', 'rejected');
+  settingsPanel.style.display = 'none';
+  window.location.href = 'https://docs.google.com/forms/d/1Plw9la7fM6SgNVJjZ_hVgPkNBWrVgi8wTT0hC6uRbXQ/edit';
+});
 
-  // Save Preferences (treated as reject for your study)
-  savePrefsBtn.addEventListener('click', () => {
-    const analytics = document.getElementById('analytics').checked;
-    const ads = document.getElementById('ads').checked;
+// Save Preferences
+savePrefsBtn.addEventListener('click', () => {
+  const analytics = document.getElementById('analytics').checked;
+  const ads = document.getElementById('ads').checked;
 
-    localStorage.setItem('cookieConsent', JSON.stringify({ analytics, ads }));
-    settingsPanel.style.display = 'none';
-    window.location.href = `thanksreject.html?bannerType=${bannerType}`;
-  });
+  localStorage.setItem('cookieConsent', JSON.stringify({ analytics, ads }));
 
-  window.onload = function() {
-    document.getElementById('consent-banner').style.display = 'block';
-  };
+  settingsPanel.style.display = 'none';
+  window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSd5cdYtoyqO7h6KOrITuKJN1nqr-od4lYhjR37WW1TCtnHQkg/viewform';
+});
+
+window.onload = function() {
+  document.getElementById('consent-banner').style.display = 'block';
+};
+
 </script>
+
 
 </body>
 </html>
