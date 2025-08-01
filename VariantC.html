@@ -657,65 +657,61 @@
 
 
 <script>
- const consentBanner = document.getElementById('consent-banner');
-const settingsPanel = document.getElementById('settings-panel');
-const acceptAllBtn = document.getElementById('accept-all');
-const managePrefsBtn = document.getElementById('manage-preferences');
-const rejectAllBtn = document.getElementById('reject-all');
-const rejectAllSettingsBtn = document.getElementById('reject-all-settings');
-const savePrefsBtn = document.getElementById('save-preferences');
-const backButton = document.getElementById('backButton');
+  const bannerType = 'category'; // 👈 Identifies this banner variant
 
-backButton.addEventListener('click', () => {
-  // Hide settings panel
-  settingsPanel.style.display = 'none';
-  // Show main consent banner
-  consentBanner.style.display = 'flex';
-});
+  const consentBanner = document.getElementById('consent-banner');
+  const settingsPanel = document.getElementById('settings-panel');
+  const acceptAllBtn = document.getElementById('accept-all');
+  const managePrefsBtn = document.getElementById('manage-preferences');
+  const rejectAllBtn = document.getElementById('reject-all');
+  const rejectAllSettingsBtn = document.getElementById('reject-all-settings');
+  const savePrefsBtn = document.getElementById('save-preferences');
+  const backButton = document.getElementById('backButton');
 
+  backButton.addEventListener('click', () => {
+    settingsPanel.style.display = 'none';
+    consentBanner.style.display = 'flex';
+  });
 
-// Accept All
-acceptAllBtn.addEventListener('click', () => {
-  localStorage.setItem('cookieConsent', 'accepted');
-  window.location.href = 'thanksaccept.html';
-});
+  // Accept All
+  acceptAllBtn.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'accepted');
+    window.location.href = `thanksaccept.html?bannerType=${bannerType}`;
+  });
 
-// Manage Preferences (show settings panel)
-managePrefsBtn.addEventListener('click', () => {
-  consentBanner.style.display = 'none';
-  settingsPanel.style.display = 'block';
-});
+  // Manage Preferences (show settings panel)
+  managePrefsBtn.addEventListener('click', () => {
+    consentBanner.style.display = 'none';
+    settingsPanel.style.display = 'block';
+  });
 
-// Reject All in banner
-rejectAllBtn.addEventListener('click', () => {
-  localStorage.setItem('cookieConsent', 'rejected');
-  window.location.href = 'thanksreject.html';
-});
+  // Reject All in banner
+  rejectAllBtn.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'rejected');
+    window.location.href = `thanksreject.html?bannerType=${bannerType}`;
+  });
 
-// Reject All in settings panel
-rejectAllSettingsBtn.addEventListener('click', () => {
-  localStorage.setItem('cookieConsent', 'rejected');
-  settingsPanel.style.display = 'none';
-  window.location.href = 'thanksreject.html';
-});
+  // Reject All in settings panel
+  rejectAllSettingsBtn.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'rejected');
+    settingsPanel.style.display = 'none';
+    window.location.href = `thanksreject.html?bannerType=${bannerType}`;
+  });
 
-// Save Preferences
-savePrefsBtn.addEventListener('click', () => {
-  const analytics = document.getElementById('analytics').checked;
-  const ads = document.getElementById('ads').checked;
+  // Save Preferences (treated as reject for your study)
+  savePrefsBtn.addEventListener('click', () => {
+    const analytics = document.getElementById('analytics').checked;
+    const ads = document.getElementById('ads').checked;
 
-  localStorage.setItem('cookieConsent', JSON.stringify({ analytics, ads }));
+    localStorage.setItem('cookieConsent', JSON.stringify({ analytics, ads }));
+    settingsPanel.style.display = 'none';
+    window.location.href = `thanksreject.html?bannerType=${bannerType}`;
+  });
 
-  settingsPanel.style.display = 'none';
-  window.location.href = 'thanksreject.html';
-});
-
-window.onload = function() {
-  document.getElementById('consent-banner').style.display = 'block';
-};
-
+  window.onload = function() {
+    document.getElementById('consent-banner').style.display = 'block';
+  };
 </script>
-
 
 </body>
 </html>
