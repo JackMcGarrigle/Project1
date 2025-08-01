@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+  <script>
+  // This gets the bannerType from the URL query string, e.g. ?bannerType=category
+  const params = new URLSearchParams(window.location.search);
+  const bannerType = params.get('bannerType') || 'unknown';
+
+  // Now you can use bannerType in your logic, e.g., to build the redirect URL
+  console.log('Banner type:', bannerType);
+</script>
 <head>
   <meta charset="UTF-8">
   <title>Thank You</title>
