@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <script>
-  // This gets the bannerType from the URL query string, e.g. ?bannerType=category
-  const params = new URLSearchParams(window.location.search);
-  const bannerType = params.get('bannerType') || 'unknown';
-
-  // Now you can use bannerType in your logic, e.g., to build the redirect URL
-  console.log('Banner type:', bannerType);
-</script>
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Thank You</title>
   <style>
     body {
@@ -64,8 +56,24 @@
     <h1>Thank you.</h1>
     <p>We’ll now ask you a few short questions about your experience before continuing.</p>
     <p>Click continue to proceed.</p>
-    <button onclick="window.location.href='https://swanseachhs.eu.qualtrics.com/jfe/form/SV_6fotGjt0lqvFheS'">Continue</button>
+    <button id="continue-btn">Continue</button>
   </div>
+
+  <script>
+    // Get bannerType from URL query params
+    const params = new URLSearchParams(window.location.search);
+    const bannerType = params.get('bannerType') || 'unknown';
+
+    // Build Qualtrics survey URL with bannerType as a query parameter
+    const qualtricsURL = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_6fotGjt0lqvFheS?bannerType=${encodeURIComponent(bannerType)}`;
+
+    // Set button click to redirect with the dynamic URL
+    document.getElementById('continue-btn').onclick = () => {
+      window.location.href = qualtricsURL;
+    };
+
+    console.log('Banner type:', bannerType);
+  </script>
 
 </body>
 </html>
