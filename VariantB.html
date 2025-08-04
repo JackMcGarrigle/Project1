@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -9,6 +9,16 @@
   * {
     box-sizing: border-box;
   }
+#blocking-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.3); /* light transparent overlay */
+  z-index: 9998; /* Just below the consent banner */
+  pointer-events: all;
+}
 
   body {
     font-family: Arial, sans-serif;
@@ -633,6 +643,8 @@
     </section>
   </main>
 </div>
+<!-- Blocking overlay -->
+<div id="blocking-overlay"></div>
 
 <!-- Consent banner -->
 <div id="consent-banner" role="region" aria-label="Cookie consent banner" aria-live="polite">
@@ -662,25 +674,26 @@
 </div>
 
 <script>
-  const bannerType = 'settings'; // 👈 Tell the system which banner this is
-
   const consentBanner = document.getElementById('consent-banner');
   const settingsPanel = document.getElementById('settings-panel');
   const acceptAllBtn = document.getElementById('accept-all');
   const settingsBtn = document.getElementById('settings');
   const rejectAllBtn = document.getElementById('reject-all');
   const savePrefsBtn = document.getElementById('save-preferences');
-  const backButton = document.getElementById('backButton');
+const backButton = document.getElementById('backButton');
 
-  backButton.addEventListener('click', () => {
-    settingsPanel.style.display = 'none';
-    consentBanner.style.display = 'flex';
-  });
+backButton.addEventListener('click', () => {
+  // Hide settings panel
+  settingsPanel.style.display = 'none';
+  // Show main consent banner
+  consentBanner.style.display = 'flex';
+});
+
 
   // Accept All
   acceptAllBtn.addEventListener('click', () => {
     localStorage.setItem('cookieConsent', 'accepted');
-    window.location.href = `thanksaccept.html?bannerType=${bannerType}`;
+    window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSckYBxLPrDDcIgm2jNRSZIxTWFYnO-TtSQxvABdCyfP-z5JyA/viewform';
   });
 
   // Settings - show settings panel
@@ -693,7 +706,7 @@
   rejectAllBtn.addEventListener('click', () => {
     localStorage.setItem('cookieConsent', 'rejected');
     settingsPanel.style.display = 'none';
-    window.location.href = `thanksreject.html?bannerType=${bannerType}`;
+    window.location.href = 'https://docs.google.com/forms/d/1Plw9la7fM6SgNVJjZ_hVgPkNBWrVgi8wTT0hC6uRbXQ/viewform';
   });
 
   // Save Preferences
@@ -707,7 +720,7 @@
     }));
 
     settingsPanel.style.display = 'none';
-    window.location.href = `thanksreject.html?bannerType=${bannerType}`;
+    window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSd5cdYtoyqO7h6KOrITuKJN1nqr-od4lYhjR37WW1TCtnHQkg/viewform';
   });
 </script>
 
