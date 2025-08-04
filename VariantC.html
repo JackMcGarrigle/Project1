@@ -9,6 +9,16 @@
   * {
     box-sizing: border-box;
   }
+#blocking-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.3); /* light transparent overlay */
+  z-index: 9998; /* Just below the consent banner */
+  pointer-events: all;
+}
 
   body {
     font-family: Arial, sans-serif;
@@ -627,6 +637,8 @@
     </section>
   </main>
 </div>
+<!-- Blocking overlay -->
+<div id="blocking-overlay"></div>
 
 <div id="consent-banner" role="region" aria-label="Cookie consent banner" aria-live="polite">
   <div id="consent-text">
