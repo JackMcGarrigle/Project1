@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -9,6 +9,16 @@
   * {
     box-sizing: border-box;
   }
+#blocking-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.3); /* light transparent overlay */
+  z-index: 9998; /* Just below the consent banner */
+  pointer-events: all;
+}
 
   body {
     font-family: Arial, sans-serif;
@@ -128,7 +138,7 @@
 
   #hero-banner {
   background-color: #004080; /* fallback color */
-  background-image: url('Image3.jpg'); /* replace with your image path */
+  background-image: url('images/Image3.jpg'); /* replace with your image path */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -564,6 +574,10 @@
     </section>
   </main>
 </div>
+ <!-- Blocking overlay -->
+<div id="blocking-overlay"></div>
+
+</div>
 
 <!-- Consent banner -->
 <div id="consent-banner" role="region" aria-label="Cookie consent banner" aria-live="polite">
@@ -574,11 +588,8 @@
     <button id="accept-all" type="button" aria-label="Accept all cookies">Accept All</button>
     <button id="reject-all" type="button" aria-label="Reject all cookies">Reject All</button>
   </div>
-</div>
-
+ 
 <script>
-  const bannerType = 'binary'; // 👈 This identifies the banner version
-
   const consentBanner = document.getElementById('consent-banner');
   const acceptAllBtn = document.getElementById('accept-all');
   const rejectAllBtn = document.getElementById('reject-all');
@@ -586,13 +597,13 @@
   acceptAllBtn.addEventListener('click', () => {
     localStorage.setItem('cookieConsent', 'accepted');
     consentBanner.style.display = 'none';
-    window.location.href = `thanksaccept.html?bannerType=${bannerType}`;
+    window.location.href = 'https://docs.google.com/forms/d/1yrSdnZM3jtqGPZe43F3pSgMnGY-cVh8a4e6UMNBHJyY/edit';
   });
 
   rejectAllBtn.addEventListener('click', () => {
     localStorage.setItem('cookieConsent', 'rejected');
     consentBanner.style.display = 'none';
-    window.location.href = `thanksreject.html?bannerType=${bannerType}`;
+    window.location.href = 'https://docs.google.com/forms/d/1Plw9la7fM6SgNVJjZ_hVgPkNBWrVgi8wTT0hC6uRbXQ/edit';
   });
 </script>
 
