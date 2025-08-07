@@ -591,6 +591,22 @@
   </div>
  
 <script>
+  // Define these at the top so they’re available everywhere
+  function getParam(name) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(name);
+  }
+
+  const pgsiScore = getParam("pgsi");        // get pgsi score from URL
+  const bannerType = getParam("banner");     // get banner type from URL
+
+  // Show banner when page loads
+  window.onload = function() {
+    document.getElementById('consent-banner').style.display = 'block';
+    console.log("PGSI:", pgsiScore, "Banner:", bannerType);  // just to test
+  };
+
+  // Redirect logic for Accept/Reject buttons
   const consentBanner = document.getElementById('consent-banner');
   const acceptAllBtn = document.getElementById('accept-all');
   const rejectAllBtn = document.getElementById('reject-all');
@@ -598,35 +614,14 @@
   acceptAllBtn.addEventListener('click', () => {
     localStorage.setItem('cookieConsent', 'accepted');
     consentBanner.style.display = 'none';
-   window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_6fotGjt0lqvFheS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
+    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_6fotGjt0lqvFheS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
   });
 
   rejectAllBtn.addEventListener('click', () => {
     localStorage.setItem('cookieConsent', 'rejected');
     consentBanner.style.display = 'none';
-   window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
+    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
   });
-</script>
-
-
-<script>
-  window.onload = function() {
-    document.getElementById('consent-banner').style.display = 'block';
-
-    function getParam(name) {
-      const params = new URLSearchParams(window.location.search);
-      return params.get(name);
-    }
-
-    const pgsiScore = getParam("pgsi");        // get pgsi score from URL
-    const bannerType = getParam("banner");     // get banner type from URL
-
-    // Example: set Qualtrics embedded data here if Qualtrics is available on this page
-    // Qualtrics.SurveyEngine.setEmbeddedData("PGSI_Score", pgsiScore);
-    // Qualtrics.SurveyEngine.setEmbeddedData("BannerType", bannerType);
-
-    console.log("PGSI:", pgsiScore, "Banner:", bannerType);  // just to test
-  };
 </script>
 </body>
 </html>
