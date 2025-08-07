@@ -706,7 +706,7 @@ backButton.addEventListener('click', () => {
 // Accept All
 acceptAllBtn.addEventListener('click', () => {
   localStorage.setItem('cookieConsent', 'accepted');
-  window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSckYBxLPrDDcIgm2jNRSZIxTWFYnO-TtSQxvABdCyfP-z5JyA/viewform';
+window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_6fotGjt0lqvFheS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
 });
 
 // Manage Preferences (show settings panel)
