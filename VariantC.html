@@ -4,8 +4,15 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>JackBet - Online Betting Platform</title>
- Qualtrics.SurveyEngine.setEmbeddedData("BannerType", "category"); 
-   Qualtrics.SurveyEngine.setEmbeddedData("PGSI_Score", pgsiScore);
+ function getParam(name) {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(name);
+}
+
+const pgsiScore = getParam("pgsi");        // get pgsi score from URL
+const bannerType = getParam("banner");     // get banner type from URL
+
+// Then set these as Qualtrics embedded data when redirecting later
 <style>
   /* Reset */
   * {
