@@ -702,7 +702,7 @@ backButton.addEventListener('click', () => {
   // Accept All
   acceptAllBtn.addEventListener('click', () => {
     localStorage.setItem('cookieConsent', 'accepted');
-    window.location.href = 'https://swanseachhs.eu.qualtrics.com/jfe/form/SV_6fotGjt0lqvFheS';
+window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_6fotGjt0lqvFheS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
   });
 
   // Settings - show settings panel
