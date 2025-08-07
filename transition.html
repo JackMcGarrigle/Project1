@@ -48,9 +48,22 @@
 
   <script>
   document.getElementById('startExperimentBtn').addEventListener('click', () => {
-    const variants = ['VariantA.html', 'VariantB.html', 'VariantC.html'];
+    // Get the PGSI score from Qualtrics Embedded Data
+    const pgsiScore = "${e://Field/PGSI_Score}";
+
+    // Define banner variants and their labels
+    const variants = [
+      { file: 'VariantA.html', label: 'binary' },
+      { file: 'VariantB.html', label: 'accept/settings' },
+      { file: 'VariantC.html', label: 'category' }
+    ];
+
+    // Randomly select one variant
     const randomIndex = Math.floor(Math.random() * variants.length);
-    window.location.href = variants[randomIndex];
+    const chosenVariant = variants[randomIndex];
+
+    // Redirect to banner page with PGSI score and banner type as URL parameters
+    window.location.href = `${chosenVariant.file}?pgsi=${encodeURIComponent(pgsiScore)}&banner=${chosenVariant.label}`;
   });
 </script>
 
