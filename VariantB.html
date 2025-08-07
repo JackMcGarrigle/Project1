@@ -701,7 +701,7 @@
   // Accept All
   acceptAllBtn.addEventListener('click', () => {
     localStorage.setItem('cookieConsent', 'accepted');
-    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_6fotGjt0lqvFheS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
+    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_6fotGjt0lqvFheS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}${prolificID ? `&PROLIFIC_PID=${encodeURIComponent(prolificID)}` : ''}`;
   });
 
   // Open Settings
@@ -714,7 +714,7 @@
   rejectAllBtn.addEventListener('click', () => {
     localStorage.setItem('cookieConsent', 'rejected');
     settingsPanel.style.display = 'none';
-    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
+    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}${prolificID ? `&PROLIFIC_PID=${encodeURIComponent(prolificID)}` : ''}`;
   });
 
   // Save Preferences
@@ -724,7 +724,7 @@
 
     localStorage.setItem('cookieConsent', JSON.stringify({ analytics, ads }));
     settingsPanel.style.display = 'none';
-    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
+   window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}${prolificID ? `&PROLIFIC_PID=${encodeURIComponent(prolificID)}` : ''}`;
   });
 </script>
 
