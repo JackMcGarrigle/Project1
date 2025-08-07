@@ -4,13 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>JackBet - Online Betting Platform</title>
- function getParam(name) {
-  const params = new URLSearchParams(window.location.search);
-  return params.get(name);
-}
-
-const pgsiScore = getParam("pgsi");        // get pgsi score from URL
-const bannerType = getParam("banner");     // get banner type from URL
 
 <style>
   /* Reset */
@@ -616,5 +609,24 @@ const bannerType = getParam("banner");     // get banner type from URL
 </script>
 
 
+<script>
+  window.onload = function() {
+    document.getElementById('consent-banner').style.display = 'block';
+
+    function getParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+
+    const pgsiScore = getParam("pgsi");        // get pgsi score from URL
+    const bannerType = getParam("banner");     // get banner type from URL
+
+    // Example: set Qualtrics embedded data here if Qualtrics is available on this page
+    // Qualtrics.SurveyEngine.setEmbeddedData("PGSI_Score", pgsiScore);
+    // Qualtrics.SurveyEngine.setEmbeddedData("BannerType", bannerType);
+
+    console.log("PGSI:", pgsiScore, "Banner:", bannerType);  // just to test
+  };
+</script>
 </body>
 </html>
