@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -383,6 +383,14 @@
   transition: background-color 0.3s ease;
   font-size: 1rem;
 }
+#consent-buttons {
+  display: flex;
+  justify-content: flex-end; /* aligns buttons to the right */
+  align-items: center;
+  gap: 10px; /* same as margin-left in button if preferred */
+  flex-wrap: wrap; /* prevents overflow on small screens */
+}
+
 #settings-panel {
   display: none; /* hidden by default, shown when clicking settings */
   position: fixed;
