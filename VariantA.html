@@ -590,6 +590,18 @@
   </div>
  
 <script>
+  // First: define pgsiScore and bannerType from the URL
+  function getParam(name) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(name);
+  }
+
+  const pgsiScore = getParam("pgsi");
+  const bannerType = getParam("banner");
+</script>
+
+<script>
+  // Then use them when the user clicks a button
   const consentBanner = document.getElementById('consent-banner');
   const acceptAllBtn = document.getElementById('accept-all');
   const rejectAllBtn = document.getElementById('reject-all');
@@ -597,13 +609,13 @@
   acceptAllBtn.addEventListener('click', () => {
     localStorage.setItem('cookieConsent', 'accepted');
     consentBanner.style.display = 'none';
-    window.location.href = 'https://swanseachhs.eu.qualtrics.com/jfe/form/SV_6fotGjt0lqvFheS';
+    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_6fotGjt0lqvFheS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
   });
 
   rejectAllBtn.addEventListener('click', () => {
     localStorage.setItem('cookieConsent', 'rejected');
     consentBanner.style.display = 'none';
-    window.location.href = 'https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS';
+    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
   });
 </script>
 
