@@ -1,10 +1,11 @@
-   <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>JackBet - Online Betting Platform</title>
-
+ Qualtrics.SurveyEngine.setEmbeddedData("BannerType", "category"); 
+ Qualtrics.SurveyEngine.setEmbeddedData("PGSI_Score", pgsiScore);
 <style>
   /* Reset */
   * {
@@ -698,7 +699,7 @@ backButton.addEventListener('click', () => {
 // Accept All
 acceptAllBtn.addEventListener('click', () => {
   localStorage.setItem('cookieConsent', 'accepted');
-window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_6fotGjt0lqvFheS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
+  window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSckYBxLPrDDcIgm2jNRSZIxTWFYnO-TtSQxvABdCyfP-z5JyA/viewform';
 });
 
 // Manage Preferences (show settings panel)
@@ -710,14 +711,14 @@ managePrefsBtn.addEventListener('click', () => {
 // Reject All in banner
 rejectAllBtn.addEventListener('click', () => {
   localStorage.setItem('cookieConsent', 'rejected');
-window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
+  window.location.href = 'https://docs.google.com/forms/d/1Plw9la7fM6SgNVJjZ_hVgPkNBWrVgi8wTT0hC6uRbXQ/edit';
 });
 
 // Reject All in settings panel
 rejectAllSettingsBtn.addEventListener('click', () => {
   localStorage.setItem('cookieConsent', 'rejected');
   settingsPanel.style.display = 'none';
-window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
+  window.location.href = 'https://docs.google.com/forms/d/1Plw9la7fM6SgNVJjZ_hVgPkNBWrVgi8wTT0hC6uRbXQ/edit';
 });
 
 // Save Preferences
@@ -728,31 +729,15 @@ savePrefsBtn.addEventListener('click', () => {
   localStorage.setItem('cookieConsent', JSON.stringify({ analytics, ads }));
 
   settingsPanel.style.display = 'none';
- window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
+  window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSd5cdYtoyqO7h6KOrITuKJN1nqr-od4lYhjR37WW1TCtnHQkg/viewform';
 });
 
 window.onload = function() {
   document.getElementById('consent-banner').style.display = 'block';
 };
 
-<script>
-  window.onload = function() {
-    document.getElementById('consent-banner').style.display = 'block';
-
-    function getParam(name) {
-      const params = new URLSearchParams(window.location.search);
-      return params.get(name);
-    }
-
-    const pgsiScore = getParam("pgsi");        // get pgsi score from URL
-    const bannerType = getParam("banner");     // get banner type from URL
-
-    // Example: set Qualtrics embedded data here if Qualtrics is available on this page
-    // Qualtrics.SurveyEngine.setEmbeddedData("PGSI_Score", pgsiScore);
-    // Qualtrics.SurveyEngine.setEmbeddedData("BannerType", bannerType);
-
-    console.log("PGSI:", pgsiScore, "Banner:", bannerType);  // just to test
-  };
 </script>
+
+
 </body>
 </html>
