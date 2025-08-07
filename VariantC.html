@@ -677,63 +677,71 @@
 
 
 <script>
- const consentBanner = document.getElementById('consent-banner');
-const settingsPanel = document.getElementById('settings-panel');
-const acceptAllBtn = document.getElementById('accept-all');
-const managePrefsBtn = document.getElementById('manage-preferences');
-const rejectAllBtn = document.getElementById('reject-all');
-const rejectAllSettingsBtn = document.getElementById('reject-all-settings');
-const savePrefsBtn = document.getElementById('save-preferences');
-const backButton = document.getElementById('backButton');
+  // Extract PGSI score and banner type from URL
+  function getParam(name) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(name);
+  }
 
-backButton.addEventListener('click', () => {
-  // Hide settings panel
-  settingsPanel.style.display = 'none';
-  // Show main consent banner
-  consentBanner.style.display = 'flex';
-});
+  const pgsiScore = getParam("pgsi");
+  const bannerType = getParam("banner");
+</script>
 
+<script>
+  const consentBanner = document.getElementById('consent-banner');
+  const settingsPanel = document.getElementById('settings-panel');
+  const acceptAllBtn = document.getElementById('accept-all');
+  const managePrefsBtn = document.getElementById('manage-preferences');
+  const rejectAllBtn = document.getElementById('reject-all');
+  const rejectAllSettingsBtn = document.getElementById('reject-all-settings');
+  const savePrefsBtn = document.getElementById('save-preferences');
+  const backButton = document.getElementById('backButton');
 
-// Accept All
-acceptAllBtn.addEventListener('click', () => {
-  localStorage.setItem('cookieConsent', 'accepted');
-   window.location.href = 'https://swanseachhs.eu.qualtrics.com/jfe/form/SV_6fotGjt0lqvFheS';
-});
+  // Back to main banner
+  backButton.addEventListener('click', () => {
+    settingsPanel.style.display = 'none';
+    consentBanner.style.display = 'flex';
+  });
 
-// Manage Preferences (show settings panel)
-managePrefsBtn.addEventListener('click', () => {
-  consentBanner.style.display = 'none';
-  settingsPanel.style.display = 'block';
-});
+  // Accept All
+  acceptAllBtn.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'accepted');
+    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_6fotGjt0lqvFheS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
+  });
 
-// Reject All in banner
-rejectAllBtn.addEventListener('click', () => {
-  localStorage.setItem('cookieConsent', 'rejected');
-   window.location.href = 'https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS';
-});
+  // Manage Preferences (show settings panel)
+  managePrefsBtn.addEventListener('click', () => {
+    consentBanner.style.display = 'none';
+    settingsPanel.style.display = 'block';
+  });
 
-// Reject All in settings panel
-rejectAllSettingsBtn.addEventListener('click', () => {
-  localStorage.setItem('cookieConsent', 'rejected');
-  settingsPanel.style.display = 'none';
-   window.location.href = 'https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS';
-});
+  // Reject All in banner
+  rejectAllBtn.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'rejected');
+    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
+  });
 
-// Save Preferences
-savePrefsBtn.addEventListener('click', () => {
-  const analytics = document.getElementById('analytics').checked;
-  const ads = document.getElementById('ads').checked;
+  // Reject All in settings panel
+  rejectAllSettingsBtn.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'rejected');
+    settingsPanel.style.display = 'none';
+    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
+  });
 
-  localStorage.setItem('cookieConsent', JSON.stringify({ analytics, ads }));
+  // Save Preferences
+  savePrefsBtn.addEventListener('click', () => {
+    const analytics = document.getElementById('analytics').checked;
+    const ads = document.getElementById('ads').checked;
 
-  settingsPanel.style.display = 'none';
- window.location.href = 'https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS';
-});
+    localStorage.setItem('cookieConsent', JSON.stringify({ analytics, ads }));
+    settingsPanel.style.display = 'none';
+    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
+  });
 
-window.onload = function() {
-  document.getElementById('consent-banner').style.display = 'block';
-};
-
+  // Show banner on page load
+  window.onload = function() {
+    document.getElementById('consent-banner').style.display = 'block';
+  };
 </script>
 
 
