@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Participant Information Sheet</title>
   <style>
-    body {
+
+   body {
       font-family: Arial, sans-serif;
       max-width: 800px;
       margin: 0 auto;
@@ -107,6 +108,9 @@
   <button id="startBtn">Continue</button>
 
   <script>
+     const prolificID = new URLSearchParams(window.location.search).get('PROLIFIC_PID');
+
+window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_xxx?PROLIFIC_PID=${encodeURIComponent(prolificID)}`;
     document.getElementById('startBtn').addEventListener('click', () => {
       window.location.href = 'https://swanseachhs.eu.qualtrics.com/jfe/form/SV_cvg635IeqgwXfDM';
     });
