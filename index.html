@@ -108,12 +108,18 @@
   <button id="startBtn">Continue</button>
 
 <script>
-  const prolificID = new URLSearchParams(window.location.search).get('PROLIFIC_PID');
+ const prolificID = new URLSearchParams(window.location.search).get('PROLIFIC_PID');
 
-  document.getElementById('startBtn').addEventListener('click', () => {
-    // Redirect to Qualtrics, passing Prolific ID in the URL
-  window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_cvg635IeqgwXfDM?PROLIFIC_PID=${encodeURIComponent(prolificID)}`;
-  });
+document.getElementById('startBtn').addEventListener('click', () => {
+  let url = 'https://swanseachhs.eu.qualtrics.com/jfe/form/SV_cvg635IeqgwXfDM';
+  
+  // Only add PROLIFIC_PID if it exists and is not null
+  if (prolificID) {
+    url += `?PROLIFIC_PID=${encodeURIComponent(prolificID)}`;
+  }
+  
+  window.location.href = url;
+});
 </script>
 </body>
 </html>
