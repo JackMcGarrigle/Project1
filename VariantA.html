@@ -611,7 +611,7 @@ const bannerType = getParam("banner");     // get banner type from URL
   rejectAllBtn.addEventListener('click', () => {
     localStorage.setItem('cookieConsent', 'rejected');
     consentBanner.style.display = 'none';
-    window.location.href = 'https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS';
+   window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
   });
 </script>
 
