@@ -46,22 +46,26 @@
 
   <button id="startExperimentBtn">Start Experiment</button>
 
-  <script>
+ <script>
   document.getElementById('startExperimentBtn').addEventListener('click', () => {
-    // Get the PGSI score from Qualtrics Embedded Data
+    // Get the PGSI score from URL (passed from Qualtrics)
     const pgsiScore = new URLSearchParams(window.location.search).get('pgsi');
-    // Define banner variants and their labels
+
+    // Define the 6 variants
     const variants = [
-      { file: 'VariantA.html', label: 'binary' },
-      { file: 'VariantB.html', label: 'accept/settings' },
-      { file: 'VariantC.html', label: 'category' }
+      { file: 'Binary-Neutral.html', label: 'binary-neutral' },
+      { file: 'Binary-Dark.html', label: 'binary-dark' },
+      { file: 'Settings-Neutral.html', label: 'settings-neutral' },
+      { file: 'Settings-Dark.html', label: 'settings-dark' },
+      { file: 'Category-Neutral.html', label: 'category-neutral' },
+      { file: 'Category-Dark.html', label: 'category-dark' }
     ];
 
     // Randomly select one variant
     const randomIndex = Math.floor(Math.random() * variants.length);
     const chosenVariant = variants[randomIndex];
 
-    // Redirect to banner page with PGSI score and banner type as URL parameters
+    // Redirect with PGSI score and banner type in URL
     window.location.href = `${chosenVariant.file}?pgsi=${encodeURIComponent(pgsiScore)}&banner=${chosenVariant.label}`;
   });
 </script>
