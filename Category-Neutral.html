@@ -431,15 +431,23 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease;
 }
-
-#accept-all:hover,
-#reject-all:hover {
-  background-color: #218838; /* darker green on hover */
+/* Reject All in settings panel — match Save Preferences */
+#settings-panel #reject-all-settings {
+  background-color: #28a745;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: normal;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
+
 
 /* Gray Manage Preferences button */
 #manage-preferences {
-  background-color: #6c757d; /* gray */
+  background-color: #28a745; /* gray */
   color: white;
   padding: 14px 24px;
   font-size: 18px;
@@ -451,9 +459,6 @@
   transition: background-color 0.3s ease;
 }
 
-#manage-preferences:hover {
-  background-color: #5a6268; /* darker gray on hover */
-}
 
 
   /* Footer */
@@ -675,8 +680,9 @@
   </div>
 </div>
 
+
 <script>
-  // Extract PGSI score, banner type, and Prolific ID from URL
+  // Extract PGSI score and banner type from URL
   function getParam(name) {
     const params = new URLSearchParams(window.location.search);
     return params.get(name);
@@ -684,8 +690,9 @@
 
   const pgsiScore = getParam("pgsi");
   const bannerType = getParam("banner");
-  const prolificID = getParam("PROLIFIC_PID") || "testing-no-id"; // fallback for testing
+</script>
 
+<script>
   const consentBanner = document.getElementById('consent-banner');
   const settingsPanel = document.getElementById('settings-panel');
   const acceptAllBtn = document.getElementById('accept-all');
@@ -704,7 +711,7 @@
   // Accept All
   acceptAllBtn.addEventListener('click', () => {
     localStorage.setItem('cookieConsent', 'accepted');
-    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_6fotGjt0lqvFheS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}&PROLIFIC_PID=${encodeURIComponent(prolificID)}`;
+    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_6fotGjt0lqvFheS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
   });
 
   // Manage Preferences (show settings panel)
@@ -716,14 +723,14 @@
   // Reject All in banner
   rejectAllBtn.addEventListener('click', () => {
     localStorage.setItem('cookieConsent', 'rejected');
-    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}&PROLIFIC_PID=${encodeURIComponent(prolificID)}`;
+    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
   });
 
   // Reject All in settings panel
   rejectAllSettingsBtn.addEventListener('click', () => {
     localStorage.setItem('cookieConsent', 'rejected');
     settingsPanel.style.display = 'none';
-    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}&PROLIFIC_PID=${encodeURIComponent(prolificID)}`;
+    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
   });
 
   // Save Preferences
@@ -733,14 +740,15 @@
 
     localStorage.setItem('cookieConsent', JSON.stringify({ analytics, ads }));
     settingsPanel.style.display = 'none';
-    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}&PROLIFIC_PID=${encodeURIComponent(prolificID)}`;
+    window.location.href = `https://swanseachhs.eu.qualtrics.com/jfe/form/SV_089p85QGfdrNJmS?PGSI_Score=${encodeURIComponent(pgsiScore)}&BannerType=${encodeURIComponent(bannerType)}`;
   });
 
   // Show banner on page load
   window.onload = function() {
-    consentBanner.style.display = 'block';
+    document.getElementById('consent-banner').style.display = 'block';
   };
 </script>
+
 
 </body>
 </html>
