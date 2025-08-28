@@ -142,4 +142,32 @@
 
   <!-- Single continue button -->
   <button id="startBtn" disabled>Continue</button>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const startBtn = document.getElementById('startBtn');
+  const form = document.getElementById('consentForm');
+  const checkboxes = Array.from(form.querySelectorAll('input[type="checkbox"]'));
+
+  // Function to enable/disable button
+  function updateButtonState() {
+    startBtn.disabled = !checkboxes.every(cb => cb.checked);
+  }
+
+  // Listen for checkbox changes
+  checkboxes.forEach(cb => cb.addEventListener('change', updateButtonState));
+
+  // Initialize state on load (in case browser pre-fills checkboxes)
+  updateButtonState();
+
+  // Redirect when clicked
+  startBtn.addEventListener('click', () => {
+    const prolificID = new URLSearchParams(window.location.search).get('PROLIFIC_PID');
+    let url = 'https://swanseachhs.eu.qualtrics.com/jfe/form/SV_cvg635IeqgwXfDM';
+    if (prolificID) {
+      url += `?PROLIFIC_PID=${encodeURIComponent(prolificID)}`;
+    }
+    window.location.href = url;
+  });
+});
+</script>
 </body>
