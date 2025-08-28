@@ -118,4 +118,13 @@ www.ico.org.uk
   Swansea University<br />
   Email: s.o.dymond@swansea.ac.uk</p>
 
- 
+ <!-- Next button to go to the consent form -->
+<button id="nextBtn" type="button">Next</button>
+
+<script>
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    // Change 'consent.html' if your consent page has a different filename or path
+    const target = 'consent.html' + (window.location.search || '');
+    window.location.href = target;
+  });
+</script>
