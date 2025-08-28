@@ -1,0 +1,53 @@
+ <!-- Consent Statement -->
+  <h3>Consent to Participate</h3>
+  <p>By clicking the <strong>Continue</strong> button below, you confirm that:</p>
+
+  <form id="consentForm">
+    <ul style="list-style:none; padding:0;">
+      <li>
+        <input type="checkbox" id="consent1" required>
+        <label for="consent1">You have read and understood the information sheet for the above study and have had the opportunity to ask questions.</label>
+      </li>
+      <li>
+        <input type="checkbox" id="consent2" required>
+        <label for="consent2">You understand that my participation is voluntary and that you am free to
+withdraw at any time, without giving any reason, without your medical care or legal rights being affected..</label>
+      </li>
+      <li>
+        <input type="checkbox" id="consent3" required>
+        <label for="consent3">You understand that sections of any of data obtained may be looked
+at by responsible individuals from the Swansea University or
+from regulatory authorities where it is relevant to your taking part in research. You give permission for these individuals to have access to
+these records.</label>
+        <li>
+         <input type="checkbox" id="consent4" required>
+        <label for="consent4">You understand that the data you provide may be used in reports and academic publications in anonymous fashion.</label>      
+        </li>
+       <input type="checkbox" id="consent5" required>
+        <label for="consent5">You agree to take part in the above study.</label>    </ul>
+  </form>
+
+  <button id="startBtn" disabled>Continue</button>
+
+<script>
+  const prolificID = new URLSearchParams(window.location.search).get('PROLIFIC_PID');
+  const startBtn = document.getElementById('startBtn');
+  const checkboxes = document.querySelectorAll('#consentForm input[type="checkbox"]');
+
+  function updateButtonState() {
+    startBtn.disabled = ![...checkboxes].every(cb => cb.checked);
+  }
+
+  checkboxes.forEach(cb => cb.addEventListener('change', updateButtonState));
+
+  startBtn.addEventListener('click', () => {
+    let url = 'https://swanseachhs.eu.qualtrics.com/jfe/form/SV_cvg635IeqgwXfDM';
+    if (prolificID) {
+      url += `?PROLIFIC_PID=${encodeURIComponent(prolificID)}`;
+    }
+    window.location.href = url;
+  });
+</script>
+
+</body>
+</html>
