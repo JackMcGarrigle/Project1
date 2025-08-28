@@ -1,88 +1,145 @@
-<!-- Consent Statement -->
-<h3>Consent to Participate</h3>
-<p>By ticking the boxes below, you confirm that:</p>
-
-<form id="consentForm">
-  <ul style="list-style:none; padding:0;">
-    <li>
-      <input type="checkbox" id="consent1" required>
-      <label for="consent1">
-        I confirm that I have read and understand the information sheet for the above study which is attached to this form.
-      </label>
-    </li>
-    <li>
-      <input type="checkbox" id="consent2" required>
-      <label for="consent2">
-        I understand that my participation is voluntary and that I am free to withdraw at any time, without giving any reasons. 
-        (Note: withdrawal is only possible until data are anonymised, as explained in the Participant Information Sheet.)
-      </label>
-    </li>
-    <li>
-      <input type="checkbox" id="consent3" required>
-      <label for="consent3">
-        I understand what my role will be in this research, and all my questions have been answered to my satisfaction.
-      </label>
-    </li>
-    <li>
-      <input type="checkbox" id="consent4" required>
-      <label for="consent4">
-        I understand that I am free to ask any questions at any time before and during the study.
-      </label>
-    </li>
-    <li>
-      <input type="checkbox" id="consent5" required>
-      <label for="consent5">
-        I have been informed that the information I provide will be safeguarded. 
-        (Note: confidentiality may not be guaranteed if certain disclosures are made, as outlined in the Participant Information Sheet.)
-      </label>
-    </li>
-    <li>
-      <input type="checkbox" id="consent6" required>
-      <label for="consent6">
-        I am happy for the information I provide to be used (anonymously) in academic papers and other formal research outputs.
-      </label>
-    </li>
-    <li>
-      <input type="checkbox" id="consent8" required>
-      <label for="consent8">
-        I have been provided with a copy of the Participant Information Sheet.
-      </label>
-    </li>
-    <li>
-      <input type="checkbox" id="consent9" required>
-      <label for="consent9">
-        I agree to the researchers processing my personal data in accordance with the aims of the study described in the Participant Information Sheet.
-      </label>
-    </li>
-    <li>
-      <input type="checkbox" id="consent10" required>
-      <label for="consent10">
-        I confirm that I am 18 years or older, currently reside in [insert eligible location if restricted], 
-        and I am not currently receiving treatment for problem gambling.
-      </label>
-    </li>
-  </ul>
-</form>
-
-<!-- Only one continue button -->
-<button id="startBtn" disabled>Continue</button>
-
-<script>
-  const prolificID = new URLSearchParams(window.location.search).get('PROLIFIC_PID');
-  const startBtn = document.getElementById('startBtn');
-  const checkboxes = document.querySelectorAll('#consentForm input[type="checkbox"]');
-
-  function updateButtonState() {
-    startBtn.disabled = ![...checkboxes].every(cb => cb.checked);
-  }
-
-  checkboxes.forEach(cb => cb.addEventListener('change', updateButtonState));
-
-  startBtn.addEventListener('click', () => {
-    let url = 'https://swanseachhs.eu.qualtrics.com/jfe/form/SV_cvg635IeqgwXfDM';
-    if (prolificID) {
-      url += `?PROLIFIC_PID=${encodeURIComponent(prolificID)}`;
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f9fafb;
     }
-    window.location.href = url;
-  });
-</script>
+
+    h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    #consentForm ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #consentForm li {
+      background: #fff;
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    #consentForm input[type="checkbox"] {
+      margin-top: 5px;
+      transform: scale(1.3);
+    }
+
+    #consentForm label {
+      flex: 1;
+      font-size: 0.95rem;
+    }
+
+    #startBtn {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      font-size: 1.1rem;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.2s ease;
+    }
+
+    #startBtn:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    #startBtn:hover:not(:disabled) {
+      background: #1e40af;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Consent Statement -->
+  <h3>Consent to Participate</h3>
+  <p>Please read each statement carefully and tick the boxes to confirm your consent:</p>
+
+  <form id="consentForm">
+    <ul>
+      <li>
+        <input type="checkbox" id="consent1" required>
+        <label for="consent1">
+          <strong>I confirm</strong> that I have read and understand the information sheet for the above study which is attached to this form.
+        </label>
+      </li>
+
+      <li>
+        <input type="checkbox" id="consent2" required>
+        <label for="consent2">
+          <strong>I understand</strong> that my participation is voluntary and that I am free to withdraw at any time, without giving any reasons.  
+          (Withdrawal is only possible until data are anonymised, as explained in the Participant Information Sheet.)
+        </label>
+      </li>
+
+      <li>
+        <input type="checkbox" id="consent3" required>
+        <label for="consent3">
+          I understand what my role will be in this research, and all my questions have been answered to my satisfaction.
+        </label>
+      </li>
+
+      <li>
+        <input type="checkbox" id="consent4" required>
+        <label for="consent4">
+          I am free to ask any questions at any time before and during the study.
+        </label>
+      </li>
+
+      <li>
+        <input type="checkbox" id="consent5" required>
+        <label for="consent5">
+          I have been informed that the information I provide will be safeguarded.  
+          (Note: confidentiality may not be guaranteed if certain disclosures are made, as outlined in the Participant Information Sheet.)
+        </label>
+      </li>
+
+      <li>
+        <input type="checkbox" id="consent6" required>
+        <label for="consent6">
+          I am happy for the information I provide to be used <strong>(anonymously)</strong> in academic papers and other formal research outputs.
+        </label>
+      </li>
+
+      <li>
+        <input type="checkbox" id="consent8" required>
+        <label for="consent8">
+          I have been provided with a copy of the Participant Information Sheet.
+        </label>
+      </li>
+
+      <li>
+        <input type="checkbox" id="consent9" required>
+        <label for="consent9">
+          I agree to the researchers processing my personal data in accordance with the aims of the study described in the Participant Information Sheet.
+        </label>
+      </li>
+
+      <li>
+        <input type="checkbox" id="consent10" required>
+        <label for="consent10">
+          I confirm that I am <strong>18 years or older</strong>, currently reside in [eligible location],  
+          and I am not currently receiving treatment for problem gambling.
+        </label>
+      </li>
+    </ul>
+  </form>
+
+  <!-- Single continue button -->
+  <button id="startBtn" disabled>Continue</button>
+</body>
